@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS `sistema`.`fiador` (
+  `codigof` INT(11) NOT NULL,
+  `nomefiador` VARCHAR(45) NOT NULL,
+  `nacionalidadef` VARCHAR(45) NOT NULL,
+  `estadocivilf` VARCHAR(45) NOT NULL,
+  `profissaof` VARCHAR(45) NOT NULL,
+  `cpffiador` VARCHAR(11) NOT NULL,
+  `datanascf` VARCHAR(8) NOT NULL,
+  `cidadef` VARCHAR(45) NOT NULL,
+  `uffiador` VARCHAR(2) NOT NULL,
+  `rgfiador` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`codigof`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `sistema`.`inquilinos` 
+ADD CONSTRAINT `fk_inquilinos_imoveis1`
+  FOREIGN KEY (`imoveis_codigo`)
+  REFERENCES `sistema`.`imoveis` (`codigo`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_inquilinos_fiador1`
+  FOREIGN KEY (`fiador_codigof`)
+  REFERENCES `sistema`.`fiador` (`codigof`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
